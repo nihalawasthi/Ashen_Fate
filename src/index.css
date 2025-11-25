@@ -1,0 +1,482 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Space+Mono:wght@400;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Enhanced animations for premium feel */
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(216, 255, 255, 0.5), 0 0 10px rgba(216, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(216, 255, 255, 0.7), 0 0 20px rgba(216, 255, 255, 0.5);
+  }
+}
+
+/* Added enhanced shine animation for premium cards */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 0.2vw;
+}
+body::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+body::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #ebfcfc;
+  border-radius: 16px;
+  border: 5px solid transparent;
+}
+body::-webkit-scrollbar-thumb:hover {
+  background-color: #ebfcfc;
+}
+body::-webkit-scrollbar-button {
+  display: none;
+}
+
+.timesfont {
+  font-family: "Times New Roman", Times, serif;
+}
+
+#statuswindow * {
+  color: #ebfcfc;
+  text-shadow: 0 0 10px rgb(216, 255, 255);
+}
+
+/* Enhanced system frame styling with better borders and depth */
+.system-frame {
+  position: relative;
+  padding: 10px;
+  --frame-color: #bcffff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.system-frame::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.system-frame::before {
+  top: -2px;
+  left: -2px;
+  border: 2px solid var(--frame-color);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(216, 255, 255, 0.5), inset 0 0 10px rgba(216, 255, 255, 0.1);
+}
+
+.system-frame::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: -15px;
+  background:
+    linear-gradient(to right, var(--frame-color) 2px, transparent 2px) 0 0,
+    linear-gradient(to right, var(--frame-color) 2px, transparent 2px) 0 100%,
+    linear-gradient(to left, var(--frame-color) 2px, transparent 2px) 100% 0,
+    linear-gradient(to left, var(--frame-color) 2px, transparent 2px) 100% 100%,
+    linear-gradient(to bottom, var(--frame-color) 2px, transparent 2px) 0 0,
+    linear-gradient(to bottom, var(--frame-color) 2px, transparent 2px) 100% 0,
+    linear-gradient(to top, var(--frame-color) 2px, transparent 2px) 0 100%,
+    linear-gradient(to top, var(--frame-color) 2px, transparent 2px) 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.cyan-frame {
+  position: relative;
+  padding: 2px;
+  --frame-color: #bcffff;
+}
+
+.cyan-frame::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border: 2px solid var(--frame-color);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(216, 255, 255, 0.5);
+}
+
+.status-window {
+  background: rgba(10, 15, 36, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(216, 255, 255, 0.3);
+  position: relative;
+}
+
+.status-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(216, 255, 255, 0.1) 50%, transparent 100%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.status-title {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(216, 255, 255, 0.3);
+  background: rgba(10, 15, 36, 0.8);
+}
+
+.status-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #bcffff, transparent);
+}
+
+.neon-text {
+  color: #bcffff;
+  text-shadow: 0 0 5px rgba(216, 255, 255, 0.5), 0 0 10px rgba(216, 255, 255, 0.3);
+}
+
+.notification-frame {
+  position: relative;
+  padding: 2px;
+}
+
+.notification-frame::before,
+.notification-frame::after {
+  content: "";
+  position: absolute;
+  background: #bcffff;
+  box-shadow: 0 0 15px rgba(216, 255, 255, 0.5);
+}
+
+.notification-frame::before {
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+}
+
+.glitch {
+  font-family: "Rubik Glitch";
+  font-weight: 100;
+}
+
+.notification-frame::after {
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+}
+
+body {
+  background-color: #0a0e17;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+/* Enhanced glitch animations for interactive elements */
+@keyframes glitchBorder {
+  0% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.2);
+  }
+  25% {
+    box-shadow: 0 0 0 2px rgba(255, 0, 255, 0.3), inset 0 0 0 1px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.2);
+  }
+  75% {
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.4), inset 0 0 0 1px rgba(255, 0, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(0, 255, 255, 0.2);
+  }
+}
+
+.glitch-border {
+  animation: glitchBorder 0.3s infinite;
+}
+
+@keyframes textGlitch {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.8;
+    transform: translateX(-1px);
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.9;
+    transform: translateX(1px);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.glitching input::placeholder {
+  animation: textGlitch 0.2s infinite;
+}
+
+@keyframes progressGlitch {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.glitch-progress {
+  position: relative;
+}
+.glitch-progress::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent);
+  animation: progressGlitch 0.5s infinite;
+  z-index: 1;
+}
+
+.scrollgallery::-webkit-scrollbar {
+  display: none;
+}
+
+/* Premium button styling with enhanced hover states */
+.game-button {
+  @apply relative overflow-hidden rounded-lg font-bold transition-all duration-300 ease-out px-8 py-3 text-lg;
+  background: linear-gradient(135deg, #bcffff 0%, #7ffef0 100%);
+  color: #0a0e17;
+  box-shadow: 0 4px 20px rgba(188, 255, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(188, 255, 255, 0.6);
+}
+
+.game-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.game-button:hover::before {
+  left: 100%;
+}
+
+.game-button:hover {
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 30px rgba(188, 255, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.game-button:active {
+  transform: scale(0.96);
+}
+
+.game-button:disabled {
+  @apply opacity-50 cursor-not-allowed hover:scale-100;
+}
+
+/* Card hover effects with smooth transitions */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  filter: brightness(1.1);
+}
+
+/* Rarity-specific glow effects */
+.rarity-ss {
+  --rarity-color: #ff6b9d;
+}
+.rarity-s {
+  --rarity-color: #ffa726;
+}
+.rarity-a {
+  --rarity-color: #42a5f5;
+}
+.rarity-b {
+  --rarity-color: #66bb6a;
+}
+.rarity-c {
+  --rarity-color: #ab47bc;
+}
+.rarity-d {
+  --rarity-color: #ec407a;
+}
+.rarity-e {
+  --rarity-color: #78909c;
+}
+
+.rarity-glow {
+  box-shadow: 0 0 20px var(--rarity-color), 0 0 40px var(--rarity-color, rgba(188, 255, 255, 0.3));
+}
+
+/* Smooth fade-in animation for content */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Added enhanced particles and premium card entrance animations */
+@keyframes cardPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(188, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(188, 255, 255, 0.6);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes particleRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) translateX(var(--tx));
+  }
+}
+
+/* Entrance animation for cards */
+.card-entrance {
+  animation: slide-up 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.card-entrance:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.card-entrance:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.card-entrance:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.card-entrance:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.card-entrance:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.card-pulse {
+  animation: cardPulse 2s ease-in-out infinite;
+}
+
+.shimmer-effect {
+  animation: shimmerEffect 2s infinite;
+  background-size: 1000px 100%;
+}
+
+.particle-rise {
+  animation: particleRise 1s ease-out forwards;
+}
